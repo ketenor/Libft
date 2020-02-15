@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ketenor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/12 18:32:30 by ketenor           #+#    #+#             */
+/*   Updated: 2019/08/12 19:22:53 by ketenor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	is_space(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f')
+		i++;
+	return (i);
+}
+
+int	ft_atoi(char *str)
+{
+	int sign;
+	int i;
+	int num;
+
+	num = 0;
+	i = is_space(str);
+	sign = 1;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num *= 10;
+		num += str[i] - 48;
+		i++;
+	}
+	return (num * sign);
+}
